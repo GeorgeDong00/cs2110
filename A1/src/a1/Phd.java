@@ -53,7 +53,7 @@ public class Phd {
 
 	/** = name of this person */
 	public String name() {
-		return this.name;
+		return name;
 	}
 
 	/**
@@ -61,32 +61,32 @@ public class Phd {
 	 * no blanks, e.g. "6/2007"
 	 */
 	public String date() {
-		return this.month + "/" + this.year;
+		return month + "/" + year;
 	}
 
 	/**
 	 * = the first advisor of this Phd (null if unknown).
 	 */
 	public Phd advisor1() {
-		return this.advisor1;
+		return advisor1;
 	}
 
 	/**
 	 * = the second advisor of this Phd (null if unknown or nonexistent).
 	 */
 	public Phd advisor2() {
-		return this.advisor2;
+		return advisor2;
 	}
 
 	/** = the number of Phd advisees of this person. */
 	public int nAdvisees() {
-		return this.advisees;
+		return advisees;
 	}
 
 	/* Group B */
 	/** Increment advisor's advisees count by 1. */
 	private void plusAdvisees() {
-		this.advisees = this.advisees + 1;
+		advisees = advisees + 1;
 	}
 
 	/**
@@ -95,9 +95,9 @@ public class Phd {
 	 * Precondition: the first advisor is unknown and p is not null.
 	 */
 	public void setAdvisor1(Phd p) {
-		assert this.advisor1 == null;
+		assert advisor1 == null;
 		assert p != null;
-		this.advisor1 = p;
+		advisor1 = p;
 		p.plusAdvisees();
 	}
 
@@ -108,11 +108,11 @@ public class Phd {
 	 * is unknown, p is not null, and p is different from the first advisor.
 	 */
 	public void setAdvisor2(Phd p) {
-		assert this.advisor1 != null;
-		assert this.advisor2 == null;
+		assert advisor1 != null;
+		assert advisor2 == null;
 		assert p != null;
-		assert p != this.advisor1;
-		this.advisor2 = p;
+		assert p != advisor1;
+		advisor2 = p;
 		p.plusAdvisees();
 	}
 
@@ -130,8 +130,8 @@ public class Phd {
 		assert a1 != a2;
 		assert a1 != null;
 		assert a2 != null;
-		this.advisor1 = a1;
-		this.advisor2 = a2;
+		advisor1 = a1;
+		advisor2 = a2;
 		a1.plusAdvisees();
 		a2.plusAdvisees();
 	}
@@ -143,14 +143,14 @@ public class Phd {
 	 * otherwise
 	 */
 	public boolean hasNoAdvisees() {
-		return this.nAdvisees() == 0;
+		return nAdvisees() == 0;
 	}
 
 	/** = "p is not null and this person got the Phd before p.” */
 	public boolean gotBefore(Phd p) {
 		assert p != null;
-		int thisMonth = Integer.valueOf(this.date().split("/")[0]);
-		int thisYear = Integer.valueOf(this.date().split("/")[1]);
+		int thisMonth = Integer.valueOf(date().split("/")[0]);
+		int thisYear = Integer.valueOf(date().split("/")[1]);
 		int pMonth = Integer.valueOf(p.date().split("/")[0]);
 		int pYear = Integer.valueOf(p.date().split("/")[1]);
 		return (thisYear < pYear) || (thisYear == pYear && thisMonth < pMonth);
@@ -164,8 +164,8 @@ public class Phd {
 	public boolean areSibs(Phd p) {
 		assert p != null;
 		boolean sameObject = (this != p);
-		Phd thisA1 = this.advisor1();
-		Phd thisA2 = this.advisor2();
+		Phd thisA1 = advisor1();
+		Phd thisA2 = advisor2();
 		Phd pA1 = p.advisor1();
 		Phd pA2 = p.advisor2();
 		boolean sameA1 = ((thisA1 == pA1) && (thisA1 != null && pA1 != null))
