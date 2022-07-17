@@ -161,7 +161,18 @@ public class A2 {
 		// TODO 3. The same things about the UTF-8 encoding magic numbers
 		// discussed in the previous method apply here also.
 
-		StringBuilder sb = new StringBuilder("");
+		StringBuilder noCap = new StringBuilder("");
+		StringBuilder yesCap = new StringBuilder("");
+
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (c >= 'A' && c <= 'Z') {
+				yesCap.append(c);
+			} else {
+				noCap.append(c);
+			}
+		}
+		return noCap.toString() + yesCap.toString();
 	}
 
 	/**
@@ -192,7 +203,18 @@ public class A2 {
 		// length of string s. If s contains 1,000 characters and s1 contains 5 chars,
 		// then about 9996 tests may have to be made in the worst case. So don't
 		// have the same method call executed several times.
-		throw new UnsupportedOperationException();
+		
+		if (s.equals(s1)) {
+			return true;
+		}
+
+		int firstOcc = s.indexOf(s1);
+		int lastOcc = s.lastIndexOf(s1);
+
+		if ((firstOcc == -1 && lastOcc == -1) || (firstOcc != lastOcc)) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
