@@ -81,4 +81,35 @@ class A2Test {
 		assertEquals(false, A2.areAnagrams("a", "A"));
 	}
 
+	@Test
+	void testNCat() {
+		assertEquals(0, A2.nCat("", ""));
+		assertEquals(0, A2.nCat("", "fg"));
+		assertEquals(-1, A2.nCat("xxx", ""));
+		assertEquals(1, A2.nCat("x", "x"));
+		assertEquals(2, A2.nCat("xx", "x"));
+		assertEquals(-1, A2.nCat("ccbbbb", "bb"));
+		assertEquals(-1, A2.nCat("bbbbcc", "bb"));
+		assertEquals(3, A2.nCat("bbbbbb", "bb"));
+		assertEquals(2, A2.nCat("bbbbbb", "bbb"));
+		assertEquals(-1, A2.nCat("bbbbbb", "bbbb"));
+		assertEquals(-1, A2.nCat("bbbbbb", "bbbbb"));
+		assertEquals(1, A2.nCat("bbbbbb", "bbbbbb"));
+		assertEquals(-1, A2.nCat("bbbbbb", "bbbbbbb"));
+		assertEquals(2, A2.nCat("xyzxyz", "xyz"));
+		assertEquals(1, A2.nCat("xyzxyz", "xyzxyz"));
+		assertEquals(4, A2.nCat("xyxyxyxy", "xy"));
+	}
+
+	@Test
+	void testShortest() {
+		assertEquals(0, A2.shortest(""));
+		assertEquals(1, A2.shortest("xxxxxxxxx"));
+		assertEquals(2, A2.shortest("xyxyxyxy"));
+		assertEquals(3, A2.shortest("012012012012"));
+		assertEquals(5, A2.shortest("hellohellohello"));
+		assertEquals(15, A2.shortest("hellohelloworld"));
+		assertEquals(9, A2.shortest("hellohell"));
+	}
+
 }
