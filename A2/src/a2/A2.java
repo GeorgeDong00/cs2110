@@ -239,7 +239,11 @@ public class A2 {
 		 * might need to first convert the string into an array of characters and then
 		 * use methods in class Arrays.
 		 */
-		throw new UnsupportedOperationException();
+		char[] sArray = s.toCharArray();
+		Arrays.parallelSort(sArray);
+		char[] tArray = t.toCharArray();
+		Arrays.parallelSort(tArray);
+		return (Arrays.compare(sArray, tArray) == 0);
 	}
 
 	/**
@@ -269,7 +273,31 @@ public class A2 {
 		// Hint: Follow this Principle:
 		// Make the structure of a loop reflect the structure of the data it processes.
 		// Use function equals, not ==, to test equality of strings.
-		throw new UnsupportedOperationException();
+		int xLength = x.length();
+		int sLength = s.length();
+		int counter = 0;
+
+		if ((sLength > 0 && xLength == 0)) {
+			return -1;
+		}
+
+		if (sLength == 0) {
+			return 0;
+		}
+
+		if (sLength % xLength > 0) {
+			return -1;
+		}
+
+		for (int i = 0; i < s.length(); i = i + xLength) {
+			String substring = s.substring(i, i + xLength);
+			if (substring.equals(x)) {
+				counter += 1;
+			} else {
+				return -1;
+			}
+		}
+		return counter;
 	}
 
 	/**
@@ -296,6 +324,16 @@ public class A2 {
 		// and then fiddling after the loop to figure out what to return.
 
 		// 3. Note that nCat(s, s) = 1, for any nonempty s.
-		throw new UnsupportedOperationException();
+		if (s.length() == 0) {
+			return 0;
+		}
+
+		for (int i = 0; i < s.length(); i++) {
+			String x = s.substring(0, i);
+			if (A2.nCat(s, x) != -1) {
+				return x.length();
+			}
+		}
+		return s.length();
 	}
 }
